@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Darling❤️🧿</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* PASSWORD */
+#lock{
+  position:fixed;
+  width:100%;
+  height:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:black;
+  z-index:999;
+}
+
+input{
+  padding:10px;
+  font-size:18px;
+  border-radius:10px;
+  border:none;
+  text-align:center;
+}
+
+button{
+  padding:10px 20px;
+  margin-top:10px;
+  background:#ff0066;
+  border:none;
+  color:white;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* MAIN */
+#screen{
+  display:none;
+  animation:fade 2s ease;
+}
+
+@keyframes fade{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+#bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url("photo1.jpg") center/cover no-repeat;
+  filter:blur(18px);
+  transform:scale(1.2);
+  z-index:-1;
+  transition:1s;
+}
+
+h1{
+  color:#ff66cc;
+  text-shadow:0 0 10px #ff66cc;
+}
+
+#msg{
+  padding:20px;
+  font-size:15px;
+  line-height:1.6;
+  white-space:pre-line;
+  min-height:120px;
+  text-shadow:0 0 5px pink;
+}
+
+img{
+  width:250px;
+  border-radius:15px;
+  transition:1s;
+  transform:scale(1);
+}
+
+img:hover{
+  transform:scale(1.05);
+}
+
+/* FINAL */
+#final{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:45px;
+  color:#ff4da6;
+  opacity:0;
+  transition:2s;
+}
+
+.show{opacity:1;}
+
+/* HEART */
+.heart{
+  position:absolute;
+  color:pink;
+  font-size:22px;
+  animation:float 5s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh) scale(0.5); opacity:0;}
+  50%{opacity:1;}
+  100%{transform:translateY(-10vh) scale(1.2); opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD -->
+<div id="lock">
+  <h2>Enter Password 💖</h2>
+  <input type="password" id="pass" placeholder="Password">
+  <button onclick="checkPass()">Enter</button>
+</div>
+
+<!-- MAIN -->
+<div id="bg"></div>
+
+<div id="screen">
+  <h1>HAPPY BIRTHDAY PILLU💋🧿</h1>
+
+  <p id="msg"></p>
+
+  <img id="img" src="photo1.jpg">
+
+</div>
+
+<div id="final">I Love You Babyy❤️🧿👸🏻</div>
+
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+let photos=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg","photo6.jpg","photo7.jpg"];
+let i=0, j=0;
+
+let text=`  Happy Birthday, my love ❤️
+On this special day, I just want to remind you how incredibly important you are to me. You are not just my girlfriend, you are my happiness, my peace, and the most beautiful part of my life.On your birthday, I wish you endless happiness, success in everything you dream of, and a life filled with love and positivity. I promise to always stand by you, support you, and make you feel loved every single day. Once again, happy birthday to the most special person in my life—I love you more than words can ever express 💖✨Ever since you came into my world, everything feels brighter and more meaningful. Your smile has the power to fix my worst days, and your presence makes even the simplest moments feel unforgettable. I truly feel lucky to have someone like you who understands me, supports me, and stands by me no matter what. You have such a pure heart, such a kind soul, and such a wonderful way of making everyone around you feel special💞
+
+Mujhe To Bass Tu Hi Chahiye
+Na Tere Jaisa Chahiye, Na Tujhse Behtar Chahiye
+Tujhse Mohhbat Karna Galat, Hai To Mujhe Iski Saja Chahiye
+Lekin Us Saja Ke Bad, mujhe bas tu chahiye
+Manjur hai mujhe logo, ki kahi bhali bhali buri batein sun na
+lekin in sab baton ke, bad bhi mujhe bas tu chahiye
+Ha har pal har lamha, bas tu chahiye tu 💞🧿🫶
+
+`;
+
+function checkPass(){
+  if(document.getElementById("pass").value==="Pilluu"){
+    
+    document.getElementById("lock").style.display="none";
+    document.getElementById("screen").style.display="block";
+
+    typeText();
+    slideShow();
+    hearts();
+
+    let audio = document.getElementById("music");
+    audio.currentTime = 0;
+    audio.play();
+
+  }else{
+    alert("Wrong Password ❌");
+  }
+}
+
+/* TYPE */
+function typeText(){
+  if(j < text.length){
+    document.getElementById("msg").innerHTML += text.charAt(j);
+    j++;
+    setTimeout(typeText,40);
+  }
+}
+
+/* SLIDESHOW */
+function slideShow(){
+  setInterval(()=>{
+    document.getElementById("img").src=photos[i];
+    document.getElementById("bg").style.backgroundImage="url('"+photos[i]+"')";
+    i=(i+1)%photos.length;
+  },3000);
+}
+
+/* HEARTS */
+function hearts(){
+  setInterval(()=>{
+    let h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),5000);
+  },250);
+}
+
+</script>
+
+</body>
+  </html>
